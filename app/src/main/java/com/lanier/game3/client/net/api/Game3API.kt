@@ -26,7 +26,7 @@ interface Game3API {
         @Query("type") type: Int,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
-    ) : BaseAPIModel<MarketModel>
+    ) : BaseAPIModel<List<MarketModel>>
 
     @GET("/get-crops")
     suspend fun getCrops(

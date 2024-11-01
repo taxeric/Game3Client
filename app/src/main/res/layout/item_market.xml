@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivPic"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="64dp"
-        android:layout_height="64dp"/>
+    <data>
+        <variable
+            name="model"
+            type="com.lanier.game3.client.model.MarketModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/tvName"
-        android:textSize="16sp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivPic"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
+
+        <TextView
+            android:text="@{model.name}"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@{model.price}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>
