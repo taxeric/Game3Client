@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.lanier.game3.client.databinding.ItemEndVerticalBinding
+import com.lanier.game3.client.databinding.ItemLoadingVerticalBinding
 
 /**
  * Desc:
