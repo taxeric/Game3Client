@@ -14,7 +14,7 @@ import com.lanier.game3.client.databinding.ItemLoadingVerticalBinding
  * Author:  幻弦让叶
  * Date:    2024/10/7 15:20
  */
-abstract class BaseRvAdapter<T, VH : BaseVH<T>> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseRvAdapter<T, VH: RecyclerView.ViewHolder> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val ITEM_VIEW_TYPE = 0
     val LOADING_VIEW_TYPE = 1
@@ -80,14 +80,18 @@ abstract class BaseRvAdapter<T, VH : BaseVH<T>> : RecyclerView.Adapter<RecyclerV
         recyclerView.removeOnScrollListener(onScrollListener)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
         return when (viewType) {
             LOADING_VIEW_TYPE -> {
                 onLoadingHolder(parent)
             }
 
             ITEM_VIEW_TYPE -> {
-                onCreateViewHolder(parent)
+                val inflater = LayoutInflater.from(parent.context)
+                onCreateViewHolder(inflater, parent)
             }
 
             else -> {
@@ -96,7 +100,7 @@ abstract class BaseRvAdapter<T, VH : BaseVH<T>> : RecyclerView.Adapter<RecyclerV
         }
     }
 
-    abstract fun onCreateViewHolder(parent: ViewGroup): VH
+    abstract fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): VH
 
     protected open fun onLoadEndHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -132,7 +136,7 @@ abstract class BaseRvAdapter<T, VH : BaseVH<T>> : RecyclerView.Adapter<RecyclerV
     }
 }
 
-abstract class BaseVH<T>(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
+abstract class BaseVH<T>(private val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
     abstract fun bind(data: T)
 }
