@@ -55,4 +55,6 @@ dependencies {
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.fragment.ktx)
+
+    implementation(libs.coil)
 }
