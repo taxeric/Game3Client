@@ -25,6 +25,7 @@ class MarketItemHolder(
 ) : BaseVH<MarketModel>(binding) {
 
     override fun bind(data: MarketModel) {
+        println(">>>> $data")
         binding.model = data
     }
 }

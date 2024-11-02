@@ -16,7 +16,7 @@ object APIRequester {
 
     fun initAPI() {
         game3Api = Retrofit.Builder()
-            .baseUrl("http://192.168.31.80:8080/")
+            .baseUrl("http://192.168.31.52:8080/")
             .callFactory(okhttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

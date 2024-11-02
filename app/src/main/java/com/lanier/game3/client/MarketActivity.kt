@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.lanier.game3.client.databinding.ActivityMarketBinding
 import com.lanier.game3.client.model.MarketModel
+import com.lanier.game3.client.model.MarketType
 import com.lanier.game3.client.widget.rv.EqualDivider
 import com.lanier.game3.client.widget.rv.OnItemClickListener
 import com.lanier.game3.client.widget.rv.OnLoadMoreListener
@@ -41,6 +42,12 @@ class MarketActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
         binding.recyclerview.adapter = adapter
         ContextCompat.getDrawable(this, R.drawable.equal_divider)?.let { drawable ->
             binding.recyclerview.addItemDecoration(
@@ -48,6 +55,16 @@ class MarketActivity : AppCompatActivity() {
             )
         }
 
+        viewmodel.marketItemsLiveData.observe(this) { triple ->
+            if (triple.first == 1) {
+                adapter.data = triple.second
+            } else {
+                adapter.addData(triple.second)
+            }
+            adapter.isEnd = triple.third
+        }
+
+        viewmodel.type = MarketType.Seed
         viewmodel.load(true)
     }
 }

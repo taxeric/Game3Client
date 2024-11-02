@@ -13,4 +13,8 @@ data class MarketModel(
     val name: String?,
     val price: Int?,
     val desc: String?,
-)
+) {
+
+    val priceStr
+        get() = "${price ?: "?"}"
+}
