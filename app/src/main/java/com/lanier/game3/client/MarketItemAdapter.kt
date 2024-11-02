@@ -2,6 +2,7 @@ package com.lanier.game3.client
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import coil.load
 import com.lanier.game3.client.databinding.ItemMarketBinding
 import com.lanier.game3.client.model.MarketModel
 import com.lanier.game3.client.widget.rv.BaseRvAdapter
@@ -25,7 +26,11 @@ class MarketItemHolder(
 ) : BaseVH<MarketModel>(binding) {
 
     override fun bind(data: MarketModel) {
-        println(">>>> $data")
         binding.model = data
+        data.itemId?.let { mid ->
+            val nid = mid.toString().replace("100728", "")
+            val picUrl = "http://192.168.31.52:8080/resources/$nid/crop.png"
+            binding.ivPic.load(picUrl)
+        }
     }
 }
