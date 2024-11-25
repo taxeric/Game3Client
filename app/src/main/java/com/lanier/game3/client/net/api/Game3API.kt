@@ -2,6 +2,7 @@ package com.lanier.game3.client.net.api
 
 import com.lanier.game3.client.model.BaseAPIModel
 import com.lanier.game3.client.model.CropModel
+import com.lanier.game3.client.model.Land
 import com.lanier.game3.client.model.LoginReqModel
 import com.lanier.game3.client.model.UserModel
 import com.lanier.game3.client.model.MarketModel
@@ -20,6 +21,11 @@ interface Game3API {
 
     @POST("/login")
     suspend fun login(@Body model: LoginReqModel) : BaseAPIModel<UserModel>
+
+    @GET("/land-get-details")
+    suspend fun getLandDetails(
+        @Query("uid") uid: String
+    ) : BaseAPIModel<List<Land>>
 
     @GET("/get-listed-products")
     suspend fun getListedProducts(
