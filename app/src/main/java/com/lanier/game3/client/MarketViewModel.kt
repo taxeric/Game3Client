@@ -8,9 +8,11 @@ import com.lanier.game3.client.model.MarketModel
 import com.lanier.game3.client.model.MarketType
 import com.lanier.game3.client.net.APIRequester
 import com.lanier.game3.client.net.handleAPIResp
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -50,13 +52,15 @@ class MarketViewModel : ViewModel() {
             oldJob?.cancelAndJoin()
             isLoading.set(true)
             runCatching {
-                APIRequester.game3Api
-                    .getListedProducts(
-                        type = mType.type,
-                        offset = (page - 1) * limit,
-                        limit = limit
-                    )
-                    .handleAPIResp()
+                withContext(Dispatchers.IO) {
+                    APIRequester.game3Api
+                        .getListedProducts(
+                            type = mType.type,
+                            offset = (page - 1) * limit,
+                            limit = limit
+                        )
+                        .handleAPIResp()
+                }
             }.onSuccess { list ->
                 val isEnd = list.size < limit
                 _marketItemsLiveData.postValue(

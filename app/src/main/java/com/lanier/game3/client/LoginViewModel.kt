@@ -7,9 +7,12 @@ import com.lanier.game3.client.cache.AppCacheData
 import com.lanier.game3.client.model.LoginReqModel
 import com.lanier.game3.client.net.APIRequester
 import com.lanier.game3.client.net.handleAPIResp
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Desc:
@@ -41,9 +44,11 @@ class LoginViewModel : ViewModel() {
         loginJob = viewModelScope.launch {
             oldJob?.cancelAndJoin()
             runCatching {
-                APIRequester.game3Api
-                    .login(model)
-                    .handleAPIResp()
+                withContext(Dispatchers.IO) {
+                    APIRequester.game3Api
+                        .login(model)
+                        .handleAPIResp()
+                }
             }.onSuccess {
                 AppCacheData.respToken = it.token
                 AppCacheData.loginUser = it.copy()
