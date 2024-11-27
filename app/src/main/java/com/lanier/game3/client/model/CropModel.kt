@@ -8,7 +8,5 @@ package com.lanier.game3.client.model
 data class CropModel(
     val cropId: Int,
     val seedId: Int?,
-    val name: String,
-    val price: Int,
     val season: Int,
-)
+) : BaseItemModel()

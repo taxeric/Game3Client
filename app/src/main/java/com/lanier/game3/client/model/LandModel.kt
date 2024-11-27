@@ -16,3 +16,12 @@ data class Land(
     val status: Int,
     val userId: Int
 )
+
+/**
+ * 用于种植请求
+ */
+data class LandPlantReqModel(
+    val userId: Int,
+    val landId: Int,
+    val seedId: Int,
+)

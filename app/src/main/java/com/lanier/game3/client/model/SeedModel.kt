@@ -8,13 +8,14 @@ package com.lanier.game3.client.model
 data class SeedModel(
     val seedId: Int,
     val cropId: Int?,
-    val name: String,
-    val price: Int,
-    val desc: String,
     val season: Int,
     val maxHarvestCount: Int,
     val cropExpPer: Int,
     val singleHarvestAmount: Int,
     val stageInfo: String,
     val plantLevel: Int,
-)
+) : BaseItemModel() {
+
+    override val itemType: Int
+        get() = MarketType.Seed.type
+}
