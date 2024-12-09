@@ -17,12 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".WarehouseActivity"
+            android:exported="false" />
+        <activity
             android:name=".MarketActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="userLandscape"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="userLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
