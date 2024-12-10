@@ -17,5 +17,5 @@ data class SeedModel(
 ) : BaseItemModel() {
 
     override val itemType: Int
-        get() = MarketType.Seed.type
+        get() = ItemType.Seed.type
 }

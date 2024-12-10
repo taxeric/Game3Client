@@ -13,6 +13,10 @@ class WarehouseActivity : AppCompatActivity() {
         ActivityWarehouseBinding.inflate(layoutInflater)
     }
 
+    private val fragmentHelper by lazy {
+        FragmentSwitchHelper(binding.frameLayout.id, supportFragmentManager)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,5 +26,7 @@ class WarehouseActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
     }
 }

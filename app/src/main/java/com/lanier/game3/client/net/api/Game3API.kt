@@ -8,7 +8,6 @@ import com.lanier.game3.client.model.LandPlantReqModel
 import com.lanier.game3.client.model.LoginReqModel
 import com.lanier.game3.client.model.UserModel
 import com.lanier.game3.client.model.MarketModel
-import com.lanier.game3.client.model.MarketType
 import com.lanier.game3.client.model.SeedModel
 import com.lanier.game3.client.model.WarehouseModel
 import retrofit2.http.Body

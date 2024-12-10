@@ -5,12 +5,17 @@ package com.lanier.game3.client.model
  * Author:  幻弦让叶
  * Date:    2024/11/2 01:29
  */
-sealed interface MarketType {
+sealed interface ItemType {
 
     val type: Int
 
-    data object Seed : MarketType {
+    data object Seed : ItemType {
         override val type: Int
             get() = 1
+    }
+
+    data object Crop : ItemType {
+        override val type: Int
+            get() = 2
     }
 }

@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.lanier.game3.client.databinding.ActivityMarketBinding
 import com.lanier.game3.client.model.MarketModel
-import com.lanier.game3.client.model.MarketType
+import com.lanier.game3.client.model.ItemType
 import com.lanier.game3.client.widget.rv.EqualDivider
 import com.lanier.game3.client.widget.rv.OnItemClickListener
 import com.lanier.game3.client.widget.rv.OnLoadMoreListener
@@ -64,7 +64,7 @@ class MarketActivity : AppCompatActivity() {
             adapter.isEnd = triple.third
         }
 
-        viewmodel.type = MarketType.Seed
+        viewmodel.type = ItemType.Seed
         viewmodel.load(true)
     }
 }

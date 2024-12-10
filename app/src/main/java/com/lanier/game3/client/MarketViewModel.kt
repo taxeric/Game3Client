@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lanier.game3.client.model.MarketModel
-import com.lanier.game3.client.model.MarketType
+import com.lanier.game3.client.model.ItemType
 import com.lanier.game3.client.net.APIRequester
 import com.lanier.game3.client.net.handleAPIResp
 import kotlinx.coroutines.Dispatchers
@@ -30,14 +30,14 @@ class MarketViewModel : ViewModel() {
     var isEnd: Boolean = false
         private set
 
-    private var isLoading = AtomicBoolean(false)
+    private val isLoading = AtomicBoolean(false)
 
     private val _marketItemsLiveData = MutableLiveData<Triple<Int, List<MarketModel>, Boolean>>()
     val marketItemsLiveData: LiveData<Triple<Int, List<MarketModel>, Boolean>> = _marketItemsLiveData
 
     private var marketJob: Job? = null
 
-    var type: MarketType? = null
+    var type: ItemType? = null
 
     fun load(refresh: Boolean = false) {
         val mType = type ?: return
